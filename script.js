@@ -1,24 +1,52 @@
-async function copyText(text) {
-    try {
-        // Verifica a permissão para escrever na área de transferência
-        const permissionStatus = await navigator.permissions.query({ name: "clipboard-write" });
+function criarPublicacao(event) {
+    event.preventDefault(); // Impede o envio do formulário
 
-        if (permissionStatus.state === "granted") {
-            // Se a permissão for concedida, copia o texto
-            await navigator.clipboard.writeText(text);
-            showToast(); // Exibe o toast de confirmação
-        } else {
-            alert("Permissão para acessar a área de transferência negada.");
-        }
-    } catch (err) {
-        console.error("Erro ao copiar texto: ", err);
+    const titulo = document.getElementById('titulo').value;
+    const texto = document.getElementById('texto').value;
+
+    if (titulo && texto) {
+        // Cria um novo objeto de publicação
+        const novaPublicacao = {
+            id: Date.now(), // Usando timestamp como ID único
+            titulo: titulo,
+            texto: texto
+        };
+
+        // Adiciona a nova publicação à lista
+        const publicacoesLista = document.getElementById('publicacoes-lista');
+        const li = document.createElement('li');
+        li.classList.add('publicacao');
+        li.innerHTML = `
+            <h3>${novaPublicacao.titulo}</h3>
+            <p>${novaPublicacao.texto}</p>
+            <button class="copiar-btn" onclick="copiarTexto('${novaPublicacao.texto}')">Copiar</button>
+            <button class="apagar-btn" onclick="apagarPublicacao(${novaPublicacao.id})">Apagar</button>
+        `;
+        publicacoesLista.appendChild(li);
+
+        // Limpa os campos do formulário
+        document.getElementById('titulo').value = '';
+        document.getElementById('texto').value = '';
+    } else {
+        alert("Por favor, preencha todos os campos.");
     }
 }
 
-function showToast() {
-    const toast = document.getElementById("toast");
-    toast.className = "toast show"; // Adiciona a classe para mostrar o toast
-    setTimeout(() => {
-        toast.className = toast.className.replace("show", ""); // Remove a classe após 3 segundos
-    }, 3000);
+function copiarTexto(texto) {
+    navigator.clipboard.writeText(texto).then(() => {
+        alert("Texto copiado: " + texto);
+    }).catch(err => {
+        console.error("Erro ao copiar texto: ", err);
+    });
+}
+
+function apagarPublicacao(id) {
+    const publicacoesLista = document.getElementById('publicacoes-lista');
+    const publicacao = Array.from(publicacoesLista.children).find(li => {
+        return li.querySelector('button.apagar-btn').onclick.toString().includes(id);
+    });
+
+    if (publicacao) {
+        publicacoesLista.removeChild(publicacao);
+    }
 }
