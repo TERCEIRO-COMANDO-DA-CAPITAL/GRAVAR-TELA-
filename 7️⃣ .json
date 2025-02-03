@@ -20,4 +20,48 @@ app.get('/publicacoes', (req, res) => {
 });
 
 // Rota para adicionar uma nova publicação
-app.post('/publicacoes', (req,
+app.post('/publicacoes', (req, res) => {
+    const novaPublicacao = req.body;
+
+    fs.readFile('publicacoes.json', 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).send('Erro ao ler o arquivo.');
+        }
+
+        const publicacoes = JSON.parse(data);
+        publicacoes.push(novaPublicacao);
+
+        fs.writeFile('publicacoes.json', JSON.stringify(publicacoes, null, 2), (err) => {
+            if (err) {
+                return res.status(500).send('Erro ao salvar a publicação.');
+            }
+            res.status(201).send(novaPublicacao);
+        });
+    });
+});
+
+// Rota para apagar uma publicação
+app.delete('/publicacoes/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    fs.readFile('publicacoes.json', 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).send('Erro ao ler o arquivo.');
+        }
+
+        let publicacoes = JSON.parse(data);
+        publicacoes = publicacoes.filter(publicacao => publicacao.id !== id);
+
+        fs.writeFile('publicacoes.json', JSON.stringify(publicacoes, null, 2), (err) => {
+            if (err) {
+                return res.status(500).send('Erro ao salvar as publicações.');
+            }
+            res.status(204).send();
+        });
+    });
+});
+
+// Inicia o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
