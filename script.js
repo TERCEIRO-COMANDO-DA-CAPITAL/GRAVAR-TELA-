@@ -1,37 +1,55 @@
-function criarPublicacao(event) {
+// Carregar publicações do servidor
+function carregarPublicacoes() {
+    fetch('/publicacoes')
+        .then(response => response.json())
+        .then(data => {
+            const publicacoesLista = document.getElementById('publicacoes-lista');
+            publicacoesLista.innerHTML = ''; // Limpa a lista antes de adicionar
+            data.forEach(publicacao => {
+                const li = document.createElement('li');
+                li.classList.add('publicacao');
+                li.innerHTML = `
+                    <h3>${publicacao.titulo}</h3>
+                    <p>${publicacao.texto}</p>
+                    <button class="copiar-btn" onclick="copiarTexto('${publicacao.texto}')">Copiar</button>
+                    <button class="apagar-btn" onclick="apagarPublicacao(${publicacao.id})">Apagar</button>
+                `;
+                publicacoesLista.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Erro ao carregar publicações:', error));
+}
+
+// Criar publicação
+document.getElementById('criar-publicacao-btn').addEventListener('click', function(event) {
     event.preventDefault(); // Impede o envio do formulário
 
     const titulo = document.getElementById('titulo').value;
     const texto = document.getElementById('texto').value;
 
-    if (titulo && texto) {
-        // Cria um novo objeto de publicação
-        const novaPublicacao = {
-            id: Date.now(), // Usando timestamp como ID único
-            titulo: titulo,
-            texto: texto
-        };
+    const novaPublicacao = {
+        id: Date.now(), // Usando timestamp como ID único
+        titulo: titulo,
+        texto: texto
+    };
 
-        // Adiciona a nova publicação à lista
-        const publicacoesLista = document.getElementById('publicacoes-lista');
-        const li = document.createElement('li');
-        li.classList.add('publicacao');
-        li.innerHTML = `
-            <h3>${novaPublicacao.titulo}</h3>
-            <p>${novaPublicacao.texto}</p>
-            <button class="copiar-btn" onclick="copiarTexto('${novaPublicacao.texto}')">Copiar</button>
-            <button class="apagar-btn" onclick="apagarPublicacao(${novaPublicacao.id})">Apagar</button>
-        `;
-        publicacoesLista.appendChild(li);
+    fetch('/publicacoes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(novaPublicacao)
+    })
+        .then(response => response.json())
+        .then(data => {
+            carregarPublicacoes(); // Atualiza a lista de publicações
+            document.getElementById('titulo').value = ''; // Limpa o campo de título
+            document.getElementById('texto').value = ''; // Limpa o campo de texto
+        })
+        .catch(error => console.error('Erro ao criar publicação:', error));
+});
 
-        // Limpa os campos do formulário
-        document.getElementById('titulo').value = '';
-        document.getElementById('texto').value = '';
-    } else {
-        alert("Por favor, preencha todos os campos.");
-    }
-}
-
+// Copiar texto
 function copiarTexto(texto) {
     navigator.clipboard.writeText(texto).then(() => {
         alert("Texto copiado: " + texto);
@@ -40,13 +58,20 @@ function copiarTexto(texto) {
     });
 }
 
+// Apagar publicação
 function apagarPublicacao(id) {
-    const publicacoesLista = document.getElementById('publicacoes-lista');
-    const publicacao = Array.from(publicacoesLista.children).find(li => {
-        return li.querySelector('button.apagar-btn').onclick.toString().includes(id);
-    });
-
-    if (publicacao) {
-        publicacoesLista.removeChild(publicacao);
-    }
+    fetch(`/publicacoes/${id}`, {
+        method: 'DELETE'
+    })
+        .then(response => {
+            if (response.ok) {
+                carregarPublicacoes(); // Atualiza a lista de publicações
+            } else {
+                console.error('Erro ao apagar publicação:', response.statusText);
+            }
+        })
+        .catch(error => console.error('Erro ao apagar publicação:', error));
 }
+
+// Inicializa a lista de publicações
+carregarPublicacoes();
