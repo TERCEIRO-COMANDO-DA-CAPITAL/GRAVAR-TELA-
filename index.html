@@ -3,76 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Textos Copiáveis</title>
+    <title>Publicidade</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Textos Copiáveis</h1>
-        <div class="scroll-container">
-            <div class="text-item">
-                <h2>Script 1</h2>
-                <button onclick="copyText('loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SrDark222/Imune-V2-OFICIAL-/refs/heads/main/%F0%9F%A5%8B%20E%20A%20TROPA%20FDP%20%F0%9F%8E%AD%F0%9F%87%AA%F0%9F%87%AC%F0%9F%91%BA\"))()')">
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/SrDark222/Imune-V2-OFICIAL-/refs/heads/main/%F0%9F%A5%8B%20E%20A%20TROPA%20FDP%20%F0%9F%8E%AD%F0%9F%87%AA%F0%9F%87%AC%F0%9F%91%BA"))()
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 2</h2>
-                <button onclick="copyText('print(\"Hello, World!\")')">
-                    print("Hello, World!")
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 3</h2>
-                <button onclick="copyText('game.Players.LocalPlayer:Kick(\"Você foi expulso!\")')">
-                    game.Players.LocalPlayer:Kick("Você foi expulso!")
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 4</h2>
-                <button onclick="copyText('game.Workspace.Part.Position = Vector3.new(0, 50, 0)')">
-                    game.Workspace.Part.Position = Vector3.new(0, 50, 0)
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 5</h2>
-                <button onclick="copyText('local player = game.Players.LocalPlayer')">
-                    local player = game.Players.LocalPlayer
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 6</h2>
-                <button onclick="copyText('game.ReplicatedStorage:WaitForChild(\"MyEvent\"):Fire()')">
-                    game.ReplicatedStorage:WaitForChild("MyEvent"):Fire()
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 7</h2>
-                <button onclick="copyText('for i = 1, 10 do print(i) end')">
-                    for i = 1, 10 do print(i) end
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 8</h2>
-                <button onclick="copyText('local function myFunction() return \"Hello\" end')">
-                    local function myFunction() return "Hello" end
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 9</h2>
-                <button onclick="copyText('game.Players.LocalPlayer.Character:MoveTo(Vector3.new(0, 0, 0))')">
-                    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(0, 0, 0))
-                </button>
-            </div>
-            <div class="text-item">
-                <h2>Script 10</h2>
-                <button onclick="copyText('local part = Instance.new (\"Part\")')">
-                    local part = Instance.new("Part")
-                </button>
-            </div>
+        <h1>Publicidade</h1>
+        <div class="publicacoes">
+            <h2>Publicações</h2>
+            <ul id="publicacoes-lista">
+                <!-- Lista de publicações será gerada aqui -->
+            </ul>
+        </div>
+        <div class="criar-publicacao">
+            <h2>Criar Publicação</h2>
+            <form id="criar-publicacao-form">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo"><br><br>
+                <label for="texto">Texto:</label>
+                <textarea id="texto" name="texto"></textarea><br><br>
+                <button id="criar-publicacao-btn">Criar Publicação</button>
+            </form>
         </div>
     </div>
-    <div id="toast" class="toast">🫶🎭 COPIADO CRIA</div>
     <script src="script.js"></script>
 </body>
 </html>
