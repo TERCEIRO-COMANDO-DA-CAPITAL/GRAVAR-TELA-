@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
@@ -19,58 +19,46 @@ h1 {
     color: #333;
 }
 
-.scroll-container {
-    max-height: 400px;
-    overflow-y: auto;
+.publicacoes {
     margin-top: 20px;
 }
 
-.text-item {
-    margin: 10px 0;
+#publicacoes-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-button {
-    width: 100%;
+.publicacao {
+    background-color: #f9f9f9;
     padding: 10px;
-    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+.publicacao:hover {
+    background-color: #f2f2f2;
+}
+
+.criar-publicacao {
+    margin-top: 20px;
+}
+
+#criar-publicacao-form {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#criar-publicacao-btn {
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    padding: 10px 20px;
 }
 
-button:hover {
+#criar-publicacao-btn:hover {
     background-color: #0056b3;
-}
-
-.toast {
-    visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 2px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    bottom: 30px;
-    font-size: 17px;
-}
-
-.toast.show {
-    visibility: visible;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-@keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
-}
-
-@keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
 }
