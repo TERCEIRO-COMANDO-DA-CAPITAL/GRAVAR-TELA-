@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gravar Tela</title>
+    <title>Gravar Tela - Painel de Compartilhamento</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Gravar e Mostrar Tela em Tempo Real</h1>
-    <video id="video" autoplay></video>
-    <button id="start">Iniciar Gravação</button>
-    <button id="stop" disabled>Parar Gravação</button>
+    <div class="container">
+        <h1>Gravar e Compartilhar Tela</h1>
+        <div class="card">
+            <h2>Compartilhar Tela</h2>
+            <p>Solicite permissão para compartilhar sua tela com outros usuários.</p>
+            <button id="start">Solicitar Permissão</button>
+            <button id="stop" disabled>Parar Compartilhamento</button>
+        </div>
+        <div class="card">
+            <h2>Compartilhar Câmera</h2>
+            <p>Ative sua câmera para compartilhar vídeo ao vivo.</p>
+            <button id="startCamera">Ativar Câmera</button>
+            <button id="stopCamera" disabled>Parar Câmera</button>
+        </div>
+        <video id="video" autoplay></video>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
