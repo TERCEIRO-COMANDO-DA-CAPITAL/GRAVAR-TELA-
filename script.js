@@ -39,23 +39,43 @@ function handleStop() {
     a.style.display = 'none';
     a.href = url;
     a.download = 'recording.webm';
-    document.body.appendChild(a);
-    a.click();
+    document.body.appendChild(a a.click();
     window.URL.revokeObjectURL(url);
-
-    // Desabilitar o botão de parar gravação
-    document.getElementById('stop').disabled = true;
 }
 
 // Eventos dos botões
 document.getElementById('start').addEventListener('click', () => {
     startCapture();
-    mediaRecorder.start();
-
-    // Desabilitar o botão de iniciar gravação
     document.getElementById('start').disabled = true;
 });
 
 document.getElementById('stop').addEventListener('click', () => {
     mediaRecorder.stop();
+    document.getElementById('start').disabled = false;
+    document.getElementById('stop').disabled = true;
+});
+
+// Funções para ativar e parar a câmera
+async function startCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUser Media({
+            video: true,
+            audio: true
+        });
+        video.srcObject = stream;
+        document.getElementById('stopCamera').disabled = false;
+    } catch (err) {
+        console.error("Erro ao ativar a câmera: ", err);
+    }
+}
+
+document.getElementById('startCamera').addEventListener('click', startCamera);
+document.getElementById('stopCamera').addEventListener('click', () => {
+    const stream = video.srcObject;
+    if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach(track => track.stop());
+        video.srcObject = null;
+    }
+    document.getElementById('stopCamera').disabled = true;
 });
