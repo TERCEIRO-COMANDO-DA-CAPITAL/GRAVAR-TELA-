@@ -10,56 +10,68 @@
     <div class="container">
         <h1>Textos Copiáveis</h1>
         <div class="scroll-container">
-            <div class="text-item" onclick="copyText('loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SrDark222/Imune-V2-OFICIAL-/refs/heads/main/%F0%9F%A5%8B%20E%20A%20TROPA%20FDP%20%F0%9F%8E%AD%F0%9F%87%AA%F0%9F%87%AC%F0%9F%91%BA\"))()')">
+            <div class="text-item">
                 <h2>Script 1</h2>
-                <p>loadstring(game:HttpGet("https://raw.githubusercontent.com/SrDark222/Imune-V2-OFICIAL-/refs/heads/main/%F0%9F%A5%8B%20E%20A%20TROPA%20FDP%20%F0%9F%8E%AD%F0%9F%87%AA%F0%9F%87%AC%F0%9F%91%BA"))()</p>
+                <button onclick="copyText('loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SrDark222/Imune-V2-OFICIAL-/refs/heads/main/%F0%9F%A5%8B%20E%20A%20TROPA%20FDP%20%F0%9F%8E%AD%F0%9F%87%AA%F0%9F%87%AC%F0%9F%91%BA\"))()')">
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/SrDark222/Imune-V2-OFICIAL-/refs/heads/main/%F0%9F%A5%8B%20E%20A%20TROPA%20FDP%20%F0%9F%8E%AD%F0%9F%87%AA%F0%9F%87%AC%F0%9F%91%BA"))()
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('print(\"Hello, World!\")')">
+            <div class="text-item">
                 <h2>Script 2</h2>
-                <p>print("Hello, World!")</p>
+                <button onclick="copyText('print(\"Hello, World!\")')">
+                    print("Hello, World!")
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('game.Players.LocalPlayer:Kick(\"Você foi expulso!\")')">
+            <div class="text-item">
                 <h2>Script 3</h2>
-                <p>game.Players.LocalPlayer:Kick("Você foi expulso!")</p>
+                <button onclick="copyText('game.Players.LocalPlayer:Kick(\"Você foi expulso!\")')">
+                    game.Players.LocalPlayer:Kick("Você foi expulso!")
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('game.Workspace.Part.Position = Vector3.new(0, 50, 0)')">
+            <div class="text-item">
                 <h2>Script 4</h2>
-                <p>game.Workspace.Part.Position = Vector3.new(0, 50, 0)</p>
+                <button onclick="copyText('game.Workspace.Part.Position = Vector3.new(0, 50, 0)')">
+                    game.Workspace.Part.Position = Vector3.new(0, 50, 0)
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('local player = game.Players.LocalPlayer')">
+            <div class="text-item">
                 <h2>Script 5</h2>
-                <p>local player = game.Players.LocalPlayer</p>
+                <button onclick="copyText('local player = game.Players.LocalPlayer')">
+                    local player = game.Players.LocalPlayer
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('game.ReplicatedStorage:WaitForChild(\"MyEvent\"):Fire()')">
+            <div class="text-item">
                 <h2>Script 6</h2>
-                <p>game.ReplicatedStorage:WaitForChild("MyEvent"):Fire()</p>
+                <button onclick="copyText('game.ReplicatedStorage:WaitForChild(\"MyEvent\"):Fire()')">
+                    game.ReplicatedStorage:WaitForChild("MyEvent"):Fire()
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('for i = 1, 10 do print(i) end')">
+            <div class="text-item">
                 <h2>Script 7</h2>
-                <p>for i = 1, 10 do print(i) end</p>
+                <button onclick="copyText('for i = 1, 10 do print(i) end')">
+                    for i = 1, 10 do print(i) end
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('local function myFunction() return \"Hello\" end')">
+            <div class="text-item">
                 <h2>Script 8</h2>
-                <p>local function myFunction() return "Hello" end</p>
+                <button onclick="copyText('local function myFunction() return \"Hello\" end')">
+                    local function myFunction() return "Hello" end
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('game.Players.LocalPlayer.Character:MoveTo(Vector3.new(0, 0, 0))')">
+            <div class="text-item">
                 <h2>Script 9</h2>
-                <p>game.Players.LocalPlayer.Character:MoveTo(Vector3.new(0, 0, 0))</p>
+                <button onclick="copyText('game.Players.LocalPlayer.Character:MoveTo(Vector3.new(0, 0, 0))')">
+                    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(0, 0, 0))
+                </button>
             </div>
-            <div class="text-item" onclick="copyText('local part = Instance.new(\"Part\")')">
+            <div class="text-item">
                 <h2>Script 10</h2>
-                <p>local part = Instance.new("Part")</p>
+                <button onclick="copyText('local part = Instance.new (\"Part\")')">
+                    local part = Instance.new("Part")
+                </button>
             </div>
         </div>
-    ```html
     </div>
-    </div>
-    <script>
-        function copyText(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Texto copiado: " + text);
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
