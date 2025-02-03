@@ -14,6 +14,9 @@ async function startCapture() {
         mediaRecorder = new MediaRecorder(stream);
         mediaRecorder.ondataavailable = handleDataAvailable;
         mediaRecorder.onstop = handleStop;
+
+        // Habilitar o botão de parar gravação
+        document.getElementById('stop').disabled = false;
     } catch (err) {
         console.error("Erro ao capturar a tela: ", err);
     }
@@ -39,12 +42,18 @@ function handleStop() {
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
+
+    // Desabilitar o botão de parar gravação
+    document.getElementById('stop').disabled = true;
 }
 
 // Eventos dos botões
 document.getElementById('start').addEventListener('click', () => {
     startCapture();
     mediaRecorder.start();
+
+    // Desabilitar o botão de iniciar gravação
+    document.getElementById('start').disabled = true;
 });
 
 document.getElementById('stop').addEventListener('click', () => {
